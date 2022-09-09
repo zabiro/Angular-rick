@@ -1,0 +1,51 @@
+<h1>Prueba api rick and morty</h1>
+<h3>buscar nombre</h3>
+<input type="text" [(ngModel)]="botonfiltrar">
+<select [(ngModel)]="status">
+    <option value="">All</option>
+    <option value="Alive">Alive</option>
+    <option value="Dead">Dead</option>
+    <option value="unknown">unknown</option>
+</select>
+<button (click)="filtrar()">buscar</button>
+
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>foto</th>
+            <th>nombre</th>
+            <th>estado</th>
+            <th>especie</th>
+            <th>última locación</th>
+            <th>último episodio donde apareció.</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let characte of character | paginate:{
+            itemsperpage: tableSize,
+            currentPage: page,
+            totalItems: count}; let i= index
+            ">
+            <td> {{characte.id}} </td>
+            <td> <img src="{{characte.image}}" alt=""> </td>
+            <td>{{characte.name}}</td>
+            <td>{{characte.status}}</td>
+            <td>{{characte.species}}</td>
+            <td>{{characte.location.name}}</td>
+            <td>
+                <a href="{{characte.episode[characte.episode.length-1]}}" target="_blank"></a>
+                {{characte.episode[characte.episode.length-1] | shortDomain}}
+
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="OnTableDatachange($event)">
+
+
+</pagination-controls>

@@ -6,5 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'apirestmix';
+
+
+
+
+  constructor() { }
+
 }
+
+  // filtrar(event: any) {
+  //   // console.log(event.target.value);
+  //   this.personaService.getPersona(event.target.value).subscribe((resp: any) => {
+  //     // console.log(resp)
+  //     this.character = resp["results"];
+  //   })
+  // }
+
+
+
+
