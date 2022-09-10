@@ -64,6 +64,8 @@ export class VistaFavoritoComponent implements OnInit {
     favorito = JSON.parse(favorito);
     const eliminarf = favorito.findIndex((x: any) => x == id);
     favorito.splice(eliminarf, 1);
+    const eliminarfs = this.character.findIndex((x: any) => x == id);
+    this.character.splice(eliminarfs, 1);
     localStorage.setItem('favorito', JSON.stringify(favorito));
   }
 
