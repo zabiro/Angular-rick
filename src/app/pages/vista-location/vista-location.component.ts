@@ -19,13 +19,10 @@ export class VistaLocationComponent implements OnInit {
     private personaService: PersonasService
   ) {
     const idlocalizacion = this.idlocalizar.snapshot.paramMap.get("id");
-
     this.personaService.getIDLocalizacion(idlocalizacion).subscribe((resp: any) => {
-
       // console.log(resp)
       this.Localizacion = resp;
       this.residentes(this.Localizacion.residents);
-
 
     })
 
@@ -33,7 +30,6 @@ export class VistaLocationComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   residentes(residentes: any) {
 
     // this.personaService.getID(residentes).subscribe((resp: any) => {
