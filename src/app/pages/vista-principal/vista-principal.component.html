@@ -9,7 +9,7 @@
 </select>
 <button (click)="filtrar()">buscar</button>
 
-<table>
+<table id="tablarick">
     <thead>
         <tr>
             <th>No</th>
@@ -23,11 +23,12 @@
     </thead>
     <tbody>
 
-        <tr *ngFor="let characte of character | paginate:{
+        <tr *ngFor="let characte of character">
+            <!-- <tr *ngFor="let characte of character | paginate:{
             itemsperpage: tableSize,
             currentPage: page,
             totalItems: count}; let i= index
-            ">
+            "> -->
             <td> {{characte.id}} </td>
             <td> <img src="{{characte.image}}" alt=""> </td>
             <td>{{characte.name}}</td>
@@ -45,7 +46,7 @@
 </table>
 
 
-<pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="OnTableDatachange($event)">
+<!-- <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="OnTableDatachange($event)"> -->
 
 
-</pagination-controls>
+<!-- </pagination-controls> -->

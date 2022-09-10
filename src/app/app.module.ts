@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { VistaDetallesComponent } from './pages/vista-detalles/vista-detalles.component';
 import { VistaPrincipalComponent } from './pages/vista-principal/vista-principal.component';
 import { ShortDomainPipe } from './pipes/short-domain.pipe';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -19,7 +18,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     VistaDetallesComponent,
     VistaPrincipalComponent,
     ShortDomainPipe,
-    NgxPaginationModule
   ],
   imports: [
     BrowserModule,
