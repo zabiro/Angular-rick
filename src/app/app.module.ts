@@ -10,6 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { VistaDetallesComponent } from './pages/vista-detalles/vista-detalles.component';
 import { VistaPrincipalComponent } from './pages/vista-principal/vista-principal.component';
 import { ShortDomainPipe } from './pipes/short-domain.pipe';
+import { VistaLocationComponent } from './pages/vista-location/vista-location.component';
+import { VistaFavoritoComponent } from './pages/vista-favorito/vista-favorito.component';
+import { NabvarComponent } from './component/nabvar/nabvar.component';
 
 
 @NgModule({
@@ -18,6 +21,9 @@ import { ShortDomainPipe } from './pipes/short-domain.pipe';
     VistaDetallesComponent,
     VistaPrincipalComponent,
     ShortDomainPipe,
+    VistaLocationComponent,
+    VistaFavoritoComponent,
+    NabvarComponent,
   ],
   imports: [
     BrowserModule,

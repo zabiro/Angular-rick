@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonasService } from '../../services/personas.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vista-principal',
@@ -12,20 +13,16 @@ export class VistaPrincipalComponent implements OnInit {
   botonfiltrar = '';
   status = '';
   page: number = 1;
-  count: number = 0;
-  tablesize: number = 10;
-  tablesizes: Array<any> = [5, 10, 15, 20];
-
+  totalpage: any;
+  pagesarray: any = [];
   public character: Array<any> = []
-
-  urlmi = "	https://rickandmortyapi.com/api/episode/51";
-
-
-
+  urldetalles: string | undefined;
+  urlfavorito: string | undefined;
 
 
   constructor(
-    private personaService: PersonasService
+    private personaService: PersonasService,
+    private router: Router
   ) {
 
   }
@@ -36,10 +33,11 @@ export class VistaPrincipalComponent implements OnInit {
 
 
   postlist(): void {
-    this.personaService.getPersonas().subscribe((resp: any) => {
+    this.personaService.getPersonas(this.page).subscribe((resp: any) => {
       console.log(resp)
       this.character = resp["results"];
-
+      this.totalpage = resp["info"].pages;
+      this.pagesarray.length = this.totalpage;
 
     })
   }
@@ -66,17 +64,106 @@ export class VistaPrincipalComponent implements OnInit {
   }
 
 
-  OnTableDatachange(event: any) {
-    this.page = event;
-    this.postlist();
+
+  detallespersonaje(id: any) {
+
+    this.urldetalles = "https://rickandmortyapi.com/api/character/" + id;
+    this.router.navigate(['vistapersonajedetalle/' + id]);
+
+
+  }
+  detallespersonajelocalizacion(localizaction: any) {
+
+    const residentesp = localizaction.split('/');
+    const idp = residentesp[residentesp.length - 1];
+    this.router.navigate(['vistapersonajelocalizacion/' + idp]);
+
 
   }
 
-  OnTablesizechange(event: any): void {
-    this.tablesize = event.target.value;
-    this.page = 1;
+  detallesfavorito() {
+    let favorito: any = localStorage.getItem('favorito');
+    if (favorito) {
+      favorito = JSON.parse(favorito);
+    } else {
+      favorito = [];
+    }
+    this.urlfavorito = "https://rickandmortyapi.com/api/character/" + favorito;
+    this.router.navigate(['vistapersonajefavoritos/' + favorito]);
+  }
+
+  agregarfavorito(id: any) {
+    let favorito: any = localStorage.getItem('favorito');
+    if (favorito) {
+      favorito = JSON.parse(favorito);
+    } else {
+      favorito = [];
+    }
+
+    favorito.push(id);
+    localStorage.setItem('favorito', JSON.stringify(favorito));
+
+
+  }
+
+  eliminarfavorito(id: any) {
+    let favorito: any = localStorage.getItem('favorito');
+    favorito = JSON.parse(favorito);
+    const eliminarf = favorito.findIndex((x: any) => x == id);
+    favorito.splice(eliminarf, 1);
+    localStorage.setItem('favorito', JSON.stringify(favorito));
+  }
+
+
+  verificarfavorito(id: any) {
+
+    let favorito: any = localStorage.getItem('favorito');
+    if (favorito) {
+      favorito = JSON.parse(favorito);
+    } else {
+      favorito = [];
+    }
+    const eliminarf = favorito.findIndex((x: any) => x == id);
+
+    if (eliminarf >= 0) {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+
+  sumarpage() {
+    if (this.totalpage == this.page) {
+      this.page = this.totalpage
+
+    } else {
+      this.page += 1;
+    }
     this.postlist();
   }
+
+  restarpage() {
+    if (this.page == 1) {
+      this.page = 1
+
+    } else {
+      this.page -= 1;
+    }
+    this.postlist();
+  }
+
+  paginacionactual(pagenumber: number) {
+
+    this.page = pagenumber;
+    this.postlist();
+
+
+
+  }
+
+
 
 
 }

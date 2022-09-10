@@ -1,24 +1,5 @@
-<h1>Prueba api rick and morty</h1>
+<p>Favoritos</p>
 
-<div class="paginator">
-    <div>
-
-        <h3>buscar nombre</h3>
-        <input type="text" [(ngModel)]="botonfiltrar">
-        <select [(ngModel)]="status">
-            <option value="">All</option>
-            <option value="Alive">Alive</option>
-            <option value="Dead">Dead</option>
-            <option value="unknown">unknown</option>
-        </select>
-        <button (click)="filtrar()">buscar</button>
-    </div>
-
-</div>
-
-<div>
-    <h3 (click)="detallesfavorito()">favoritos</h3>
-</div>
 
 <table id="tablarick">
     <thead>
@@ -56,18 +37,3 @@
         </tr>
     </tbody>
 </table>
-
-<div>
-    <div class="centrarpage">paginas</div>
-    <div>
-
-        <div>
-            <span (click)="restarpage()">anterior</span>
-            <span (click)="paginacionactual(i+1)" *ngFor="let item of pagesarray; let i = index">
-                {{i+1}}
-            </span>
-            <span (click)="sumarpage()">siguiente</span>
-        </div>
-
-    </div>
-</div>

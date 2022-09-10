@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PersonasService } from 'src/app/services/personas.service';
 
 
@@ -9,17 +10,21 @@ import { PersonasService } from 'src/app/services/personas.service';
 })
 export class VistaDetallesComponent implements OnInit {
 
-  title = 'apirestmix';
-  botonfiltrar = '';
-  status = '';
-  public character: Array<any> = []
+
+
+  public Personaje: any;
 
   constructor(
+    private idpersonaje: ActivatedRoute,
     private personaService: PersonasService
   ) {
-    this.personaService.getPersonas().subscribe((resp: any) => {
+    const iddetalle = this.idpersonaje.snapshot.paramMap.get("id");
+
+    this.personaService.getID(iddetalle).subscribe((resp: any) => {
+
       console.log(resp)
-      this.character = resp["results"];
+      this.Personaje = resp;
+
     })
   }
 

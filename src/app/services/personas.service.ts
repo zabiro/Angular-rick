@@ -5,8 +5,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
   providedIn: 'root'
 })
 export class PersonasService {
-  _url = 'https://rickandmortyapi.com/api/character'
+  _url = 'https://rickandmortyapi.com/api/character/?page='
+  _urlfavorito = 'https://rickandmortyapi.com/api/character/'
   _urlnombre = 'https://rickandmortyapi.com/api/character/?name='
+  _urlid = 'https://rickandmortyapi.com/api/character/'
+  _urlidlocalization = 'https://rickandmortyapi.com/api/location/'
+
 
 
 
@@ -19,11 +23,21 @@ export class PersonasService {
 
   }
 
-  getPersonas() {
+  getPersonas(page: any) {
     let heades = new HttpHeaders()
       .set('type-content', 'aplication/json')
 
-    return this.http.get(this._url, {
+    return this.http.get(this._url + page, {
+      // headers: heades
+    }
+
+    )
+  }
+  getPersonasfavoritos(arrayfavorito: any) {
+    let heades = new HttpHeaders()
+      .set('type-content', 'aplication/json')
+
+    return this.http.get(this._urlfavorito + arrayfavorito, {
       // headers: heades
     }
 
@@ -40,6 +54,31 @@ export class PersonasService {
 
 
     return this.http.get(sinsatatus + statusm, {
+      // headers: heades
+    }
+
+    )
+  }
+
+  getID(id: any) {
+    let heades = new HttpHeaders()
+      .set('type-content', 'aplication/json')
+
+
+    var personajeid = this._urlid + id;
+    return this.http.get(personajeid, {
+      // headers: heades
+    }
+
+    )
+  }
+  getIDLocalizacion(id: any) {
+    let heades = new HttpHeaders()
+      .set('type-content', 'aplication/json')
+
+
+    var localization = this._urlidlocalization + id;
+    return this.http.get(localization, {
       // headers: heades
     }
 
