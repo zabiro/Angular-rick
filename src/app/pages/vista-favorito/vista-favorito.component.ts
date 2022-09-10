@@ -32,7 +32,16 @@ export class VistaFavoritoComponent implements OnInit {
     }
 
     this.personaService.getPersonasfavoritos(favorito).subscribe((resp: any) => {
-      this.character = resp;
+      if (favorito.length == 1) {
+
+        this.character = [resp];
+      } else {
+        this.character = resp;
+
+      }
+      console.log(this.character);
+      console.log(favorito.length);
+
     })
   }
 
