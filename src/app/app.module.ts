@@ -24,6 +24,7 @@ import { NabvarComponent } from './component/nabvar/nabvar.component';
     VistaLocationComponent,
     VistaFavoritoComponent,
     NabvarComponent,
+
   ],
   imports: [
     BrowserModule,

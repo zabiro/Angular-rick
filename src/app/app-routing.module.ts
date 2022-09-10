@@ -7,6 +7,7 @@ import { VistaPrincipalComponent } from './pages/vista-principal/vista-principal
 
 const routes: Routes = [
 
+
   { path: 'vistapersonajes', component: VistaPrincipalComponent },
   { path: 'vistapersonajedetalle/:id', component: VistaDetallesComponent },
   { path: 'vistapersonajelocalizacion/:id', component: VistaLocationComponent },

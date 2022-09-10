@@ -1,29 +1,43 @@
-<div>
+<div class="row">
+    <div class="col-12">
+        <img src="" alt="">
+    </div>
+</div>
 
-
-    <h2>{{Personaje.name}}</h2>
-
-    <div class="div">
-        <div>
-            <img src="{{Personaje.image}}" alt="">
+<div class="card mb-3 mx-auto" style="max-width: 600px;">
+    <div class="row g-0">
+        <div class="col-md-6">
+            <img src="{{Personaje.image}}" class="img-fluid rounded-start" alt="...">
         </div>
-        <div>
+        <div class="col-md-6">
+            <div class="card-body">
+                <h5 class="card-title">Información</h5>
+                <div class="card-text">
+                    <h6>Nombre: {{Personaje.name}}</h6>
+                    <h6>Estado: {{Personaje.status}}</h6>
+                    <h6>Especie: {{Personaje.species}}</h6>
+                    <h6>Tipo de especie: {{Personaje.type}}</h6>
+                    <h6>Genero: {{Personaje.gender}}</h6>
+                    <h6>Origen: {{Personaje.origin.name}}</h6>
+                    <h6>Localización: {{Personaje.location.name}}</h6>
+                    <h6>Episodios:
+                        <span *ngFor="let item of Personaje.episode">
 
-            <h6>Estado: {{Personaje.status}}</h6>
-            <h6>Especie: {{Personaje.species}}</h6>
-            <h6>Tipo de especie: {{Personaje.type}}</h6>
-            <h6>Genero: {{Personaje.gender}}</h6>
-            <h6>Origen: {{Personaje.origin.name}}</h6>
-            <h6>Localización: {{Personaje.location.name}}</h6>
-            <h6>Episodios:
-                <span *ngFor="let item of Personaje.episode">
+                            {{item | shortDomain}}
 
-                    {{item | shortDomain}}
+                        </span>
 
-                </span>
-
-            </h6>
-
+                    </h6>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
+<div class="row mb-3 mx-auto" style="max-width: 600px;">
+
+    <div class=" col-12 text-end">
+        <a href="/ ">
+            Atras
+        </a>
     </div>
 </div>

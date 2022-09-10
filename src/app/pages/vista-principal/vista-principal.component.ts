@@ -18,6 +18,7 @@ export class VistaPrincipalComponent implements OnInit {
   public character: Array<any> = []
   urldetalles: string | undefined;
   urlfavorito: string | undefined;
+  ocultarpaginador: boolean = true;
 
 
   constructor(
@@ -61,6 +62,7 @@ export class VistaPrincipalComponent implements OnInit {
         this.character = resp["results"];
       })
     }
+    this.ocultarpaginador = false;
   }
 
 
@@ -90,6 +92,7 @@ export class VistaPrincipalComponent implements OnInit {
     }
     this.urlfavorito = "https://rickandmortyapi.com/api/character/" + favorito;
     this.router.navigate(['vistapersonajefavoritos/' + favorito]);
+
   }
 
   agregarfavorito(id: any) {

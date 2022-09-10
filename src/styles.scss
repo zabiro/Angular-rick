@@ -1,1 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
+$brown: #44281d;
+$orange: #e4a788;
+$yellow: #f0e14a;
+$green: #97ce4c;
+$pink: #e89ac7;
+::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $orange;
+    /* border-radius: 5px; */
+}
+
+.navbar {
+    background: $green;
+}
+
+button {
+    background-color: $orange!important;
+    border: none!important;
+}
+
+a:hover {
+    cursor: pointer;
+    color: $pink!important;
+}
+
+.page-link {
+    color: $brown!important;
+    border-color: $brown!important;
+}
+
+.page-link:hover {
+    color: $pink!important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+b {
+    color: $brown;
+}
+
+.cursorpointer {
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover {
+        transition: all 0.2s;
+        color: $orange;
+        font-weight: bold;
+        &.titulo {
+            font-size: 2.1rem;
+        }
+        &.subtitulo {
+            font-size: 1.1rem;
+        }
+    }
+}

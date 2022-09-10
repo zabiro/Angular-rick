@@ -1,0 +1,11 @@
+.navbar {
+    img {
+        width: 100%;
+        object-fit: contain;
+    }
+    @media (max-width: 575px) {
+        .navbar-brand {
+            margin: auto;
+        }
+    }
+}

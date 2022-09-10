@@ -1,39 +1,26 @@
-<p>Favoritos</p>
+<h2>Mis favoritos</h2>
 
 
-<table id="tablarick">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>foto</th>
-            <th>nombre</th>
-            <th>estado</th>
-            <th>especie</th>
-            <th>última locación</th>
-            <th>último episodio donde apareció.</th>
-            <th>favorito</th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="row">
+    <div class="col-12 mt-4 containerpersonajes">
+        <div *ngFor="let characte of character" class="containerpersonajesitem">
+            <div class="card " style="width: 18rem;">
+                <img src="{{characte.image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">
+                        <h2 (click)="detallespersonaje(characte.id)">{{characte.name}}</h2>
+                        <h6><b>Estado:</b> {{characte.status}}</h6>
+                        <h6><b>Especie</b> {{characte.species}}</h6>
+                        <h6 (click)="detallespersonajelocalizacion(characte.location.url)"> <b>Última locación: </b> {{characte.location.name}}
+                        </h6>
+                        <h6>
+                            <a href="{{characte.episode[characte.episode.length-1]}}" target="_blank"></a>
+                            <b>Último episodio donde apareció:</b> {{characte.episode[characte.episode.length-1] | shortDomain }}
+                        </h6>
+                        <b> Marcar como favorito:</b> <input [checked]="verificarfavorito(characte.id)" (click)="verificarfavorito(characte.id) ? eliminarfavorito(characte.id) : agregarfavorito(characte.id)" type="checkbox" name="" id="{{characte.id}}">
 
-        <tr *ngFor="let characte of character">
-
-            <td> {{characte.id}} </td>
-            <td> <img src="{{characte.image}}" alt=""> </td>
-            <td (click)="detallespersonaje(characte.id)">{{characte.name}}</td>
-            <td>{{characte.status}}</td>
-            <td>{{characte.species}}</td>
-            <td (click)="detallespersonajelocalizacion(characte.location.url)">{{characte.location.name}}
-            </td>
-            <td>
-                <a href="{{characte.episode[characte.episode.length-1]}}" target="_blank"></a>
-                {{characte.episode[characte.episode.length-1] | shortDomain}}
-
-
-            </td>
-            <td>
-                <input [checked]="verificarfavorito(characte.id)" (click)="verificarfavorito(characte.id) ? eliminarfavorito(characte.id) : agregarfavorito(characte.id)" type="checkbox" name="" id="{{characte.id}}">
-            </td>
-        </tr>
-    </tbody>
-</table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

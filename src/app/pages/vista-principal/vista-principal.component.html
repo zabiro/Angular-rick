@@ -1,73 +1,66 @@
-<h1>Prueba api rick and morty</h1>
-
-<div class="paginator">
-    <div>
-
-        <h3>buscar nombre</h3>
-        <input type="text" [(ngModel)]="botonfiltrar">
-        <select [(ngModel)]="status">
-            <option value="">All</option>
-            <option value="Alive">Alive</option>
-            <option value="Dead">Dead</option>
-            <option value="unknown">unknown</option>
-        </select>
-        <button (click)="filtrar()">buscar</button>
-    </div>
-
-</div>
-
-<div>
-    <h3 (click)="detallesfavorito()">favoritos</h3>
-</div>
-
-<table id="tablarick">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>foto</th>
-            <th>nombre</th>
-            <th>estado</th>
-            <th>especie</th>
-            <th>última locación</th>
-            <th>último episodio donde apareció.</th>
-            <th>favorito</th>
-        </tr>
-    </thead>
-    <tbody>
-
-        <tr *ngFor="let characte of character">
-
-            <td> {{characte.id}} </td>
-            <td> <img src="{{characte.image}}" alt=""> </td>
-            <td (click)="detallespersonaje(characte.id)">{{characte.name}}</td>
-            <td>{{characte.status}}</td>
-            <td>{{characte.species}}</td>
-            <td (click)="detallespersonajelocalizacion(characte.location.url)">{{characte.location.name}}
-            </td>
-            <td>
-                <a href="{{characte.episode[characte.episode.length-1]}}" target="_blank"></a>
-                {{characte.episode[characte.episode.length-1] | shortDomain}}
-
-
-            </td>
-            <td>
-                <input [checked]="verificarfavorito(characte.id)" (click)="verificarfavorito(characte.id) ? eliminarfavorito(characte.id) : agregarfavorito(characte.id)" type="checkbox" name="" id="{{characte.id}}">
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<div>
-    <div class="centrarpage">paginas</div>
-    <div>
-
-        <div>
-            <span (click)="restarpage()">anterior</span>
-            <span (click)="paginacionactual(i+1)" *ngFor="let item of pagesarray; let i = index">
-                {{i+1}}
-            </span>
-            <span (click)="sumarpage()">siguiente</span>
+<div class="row containerbuscaryfavorito">
+    <div class="col-sm-6 buscar">
+        <div class="containerbuscador">
+            <input class="form-control" type="text" [(ngModel)]="botonfiltrar" placeholder="Buscar por nombre">
+            <select class="form-control" [(ngModel)]="status">
+                <option class="form-control" value="">All</option>
+                <option value="Alive">Alive</option>
+                <option value="Dead">Dead</option>
+                <option value="unknown">unknown</option>
+            </select>
+            <button class="btn btn-primary form-control" (click)="filtrar()">buscar</button>
         </div>
 
+    </div>
+    <div class="col-sm-6 favorito">
+        <div class="text-end">
+            <button class="text-end btn btn-primary" (click)="detallesfavorito()">
+                Ver tus favoritos
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 mt-4 containerpersonajes">
+        <div *ngFor="let characte of character" class="containerpersonajesitem">
+            <div class="card " style="width: 18rem;">
+                <img src="{{characte.image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">
+                        <h2 class="cursorpointer titulo" (click)="detallespersonaje(characte.id)">{{characte.name}}</h2>
+                        <h6><b>Estado:</b> {{characte.status}}</h6>
+                        <h6><b>Especie</b> {{characte.species}}</h6>
+                        <h6 class="cursorpointer subtitulo" (click)="detallespersonajelocalizacion(characte.location.url)">
+                            <b>Última
+                            locación: </b> {{characte.location.name}}
+                        </h6>
+                        <h6>
+                            <a href="{{characte.episode[characte.episode.length-1]}}" target="_blank"></a>
+                            <b>Último episodio donde apareció:</b> {{characte.episode[characte.episode.length-1] | shortDomain }}
+                        </h6>
+                        <b> Marcar como favorito:</b> <input [checked]="verificarfavorito(characte.id)" (click)="verificarfavorito(characte.id) ? eliminarfavorito(characte.id) : agregarfavorito(characte.id)" type="checkbox" name="" id="{{characte.id}}">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="ocultarpaginador" class="row my-4 ">
+    <div class="col-12 ">
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li (click)="restarpage()" class=" page-item "><a class="page-link ">Anterior</a></li>
+                <li class="page-item contenedornumerospaginacion">
+                    <a (click)="paginacionactual(i+1)" *ngFor="let item of pagesarray; let i= index " class="page-link "> {{i+1}}</a>
+                </li>
+
+                <li class="page-item "><a class="page-link " (click)="sumarpage() ">Siguiente</a></li>
+            </ul>
+        </nav>
     </div>
 </div>

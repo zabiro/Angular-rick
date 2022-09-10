@@ -10,15 +10,23 @@
             <h6>Tipo: {{Localizacion.type}}</h6>
             <h6>Dimension: {{Localizacion.dimension}}</h6>
 
-            <h6>Residentes:
-                <span *ngFor="let item of Nombrepersonas">
-
-                    <br> {{item}}
-
+            <h6 class="quitarultimacoma">Residentes:
+                <span *ngFor="let item of Nombrepersonas; let i = index">
+                    {{item}}
+                    <span class="coma">,</span>
+                <span class="punto">.</span>
                 </span>
 
             </h6>
 
+        </div>
+    </div>
+    <div class="row mb-3 mx-auto">
+
+        <div class=" col-12 text-start ps-0">
+            <a href="/ ">
+                Atras
+            </a>
         </div>
     </div>
 </div>
